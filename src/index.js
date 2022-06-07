@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Provider from './Context/Provider';
+import {BasketContextprovider} from './Context/BasketContext'
 
 ReactDOM.render(
   <React.StrictMode>
+    <BasketContextprovider>
     <App />
+    </BasketContextprovider>
   </React.StrictMode>,
   document.getElementById('root')
 );
