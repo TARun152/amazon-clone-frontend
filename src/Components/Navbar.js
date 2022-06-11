@@ -1,4 +1,4 @@
-import React,{useContext} from 'react'
+import React,{useContext,useState} from 'react'
 import { Link } from 'react-router-dom'
 import '../Styles/Navbar.css'
 import SearchIcon from '@mui/icons-material/Search';
@@ -7,6 +7,11 @@ import { BasketContext } from '../Context/BasketContext';
 
 export default function Navbar(){
     const {basket} = useContext(BasketContext)
+    const [token, settoken] = useState(sessionStorage.getItem('token'))
+    const signOutUser=()=>{
+        sessionStorage.removeItem('token')
+        settoken(null)
+    }
         return (
             <div className='navbar'>
                 <Link to='/'>
@@ -17,10 +22,10 @@ export default function Navbar(){
                     <SearchIcon className='nav_searchIcon'/>
                 </div>
                 <div className="nav_profile">
-                    <Link to='/login'>
-                    <div className="nav_profileOptions">
-                       <span className='profileOptions_firstLine'>Hello Guest</span>
-                       <span className='profileOptions_secondLine'>Sign In</span> 
+                    <Link to={!token&&'/login'}>
+                    <div className="nav_profileOptions" onClick={signOutUser}>
+                       <span className='profileOptions_firstLine'>Hello {token?sessionStorage.getItem('email'):"Guest"}</span>
+                       <span className='profileOptions_secondLine'>{token?"Sign Out":"Sign In"}</span> 
                     </div>
                     </Link>
                     <div className="nav_profileOptions">

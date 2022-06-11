@@ -13,6 +13,32 @@ function Login() {
 
     const signIn = async (e) => {
         e.preventDefault();
+        const newuser={
+            email,
+           password
+       }
+       try {
+           var res=await axios.post(process.env.REACT_APP_URL+'login',newuser)
+               if(res.data?.msg)
+               {
+                   toast.error(res.data.msg)
+                   // setisFetching(false)
+               }
+               else
+               {
+               sessionStorage.setItem('token',res.data.token)
+               sessionStorage.setItem('email',res.data.user.email)
+               history.push('/')
+               // settoken(res.data.token)
+               }
+       } catch (error) {
+           toast.error(error)
+           // setisFetching(false)
+       }
+    }
+
+    const register = async (e) => {
+        e.preventDefault();
         try {
             const res = await axios.post(process.env.REACT_APP_URL+'signUp',
             {
@@ -27,35 +53,13 @@ function Login() {
             else
             {
             sessionStorage.setItem('token',res.data.token)
+            sessionStorage.setItem('email',res.data.user.email)
+            history.push('/')
             // settoken(res.data.token)
             }
         } catch (error) {
             toast.error(error)
                 // setisFetching(false)
-        }
-    }
-
-    const register = async (e) => {
-        e.preventDefault();
-         const newuser={
-             email,
-            password
-        }
-        try {
-            var res=await axios.post(process.env.REACT_APP_URL+'login',newuser)
-                if(res.data?.msg)
-                {
-                    toast.error(res.data.msg)
-                    // setisFetching(false)
-                }
-                else
-                {
-                sessionStorage.setItem('token',res.data.token)
-                // settoken(res.data.token)
-                }
-        } catch (error) {
-            toast.error(error)
-            // setisFetching(false)
         }
     }
 

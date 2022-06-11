@@ -1,8 +1,10 @@
 import React,{useContext} from 'react'
 import CurrencyFormat from "react-currency-format";
+import { useHistory } from 'react-router-dom';
 import { BasketContext } from '../Context/BasketContext';
 import '../Styles/Subtotal.css'
 export default function Subtotal() {
+  const history=useHistory()
   const {basket} = useContext(BasketContext)
   const getBasketTotal=()=>{
     let sum=0
@@ -32,7 +34,7 @@ export default function Subtotal() {
         prefix={"$"}
       />
 
-      <button>Proceed to Checkout</button>
+      <button onClick={()=>{history.push('/payment')}}>Proceed to Checkout</button>
     </div>
   )
 }
