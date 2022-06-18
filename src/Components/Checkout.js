@@ -4,7 +4,7 @@ import Subtotal from './Subtotal';
 import {BasketContext} from '../Context/BasketContext'
 import CheckoutProduct from './CheckoutProduct';
 export default function Checkout() {
-  const {basket} = useContext(BasketContext)
+  const {basket,user} = useContext(BasketContext)
     return (
         <div className="checkout">
           <div className="checkout__left">
@@ -15,7 +15,7 @@ export default function Checkout() {
             />
     
             <div>
-              <h3>Hello, {sessionStorage.getItem('email')}</h3>
+              <h3>Hello, {user.email}</h3>
               <h2 className="checkout__title">Your shopping Basket</h2>
     
               {basket.map(item => (

@@ -9,7 +9,7 @@ import axios from "axios";
 
 export default function Payment() {
     const history=useHistory()
-  const { basket,setbasket } = useContext(BasketContext);
+  const { basket,setbasket,user } = useContext(BasketContext);
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -18,28 +18,43 @@ export default function Payment() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setclientSecret] = useState(null)
   useEffect(() => {
+    let total=getBasketTotal(basket)
+    if(total>0)
     axios.post(process.env.REACT_APP_URL+'payment/create',{
-        total:200
-        // getBasketTotal(basket)*100
+        total:total
     })
     .then(res=>setclientSecret(res.data.clientSecret))
   }, [basket])
-  console.log(clientSecret)
+  // console.log(clientSecret)
   
   const handleSubmit = async (e) => {
       e.preventDefault()
       setProcessing(true)
-      const payload=await stripe.confirmCardPayment(clientSecret,{
-          payment_method:{
-              card: elements.getElement(CardElement)
+      stripe.confirmCardPayment(clientSecret,{
+        payment_method:{
+              card: elements.getElement(CardElement),
+              billing_details: {
+                name: 'Jenny Rosen',
+              }
           }
       }).then(({paymentIntent})=>{
+        console.log(paymentIntent)
         //   paymentIntent=payment confirmation
         setSucceeded(true)
         setError(null)
         setProcessing(false)
-        setbasket([])
-        history.replace('/orders')
+        axios.post(process.env.REACT_APP_URL+'orders/addOrder',{
+          userId:user._id,
+          orderId:paymentIntent.id,
+          orders:basket,
+          amount:paymentIntent.amount,
+          createdOn:paymentIntent.created
+        }).then(()=>{
+          setbasket([])
+          history.replace('/orders')
+        }
+        )
+        .catch(err=>console.log(err))
       })
   };
   const handleChange = (e) => {

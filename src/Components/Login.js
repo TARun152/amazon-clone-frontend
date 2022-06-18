@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import axios from 'axios'
 import '../Styles/Login.css'
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BasketContext } from '../Context/BasketContext';
 // import { auth } from "./firebase";
 
 function Login() {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {setuser} = useContext(BasketContext)
 
     const signIn = async (e) => {
         e.preventDefault();
@@ -18,7 +20,7 @@ function Login() {
            password
        }
        try {
-           var res=await axios.post(process.env.REACT_APP_URL+'login',newuser)
+           var res=await axios.post(process.env.REACT_APP_URL+'auth/login',newuser)
                if(res.data?.msg)
                {
                    toast.error(res.data.msg)
@@ -27,7 +29,7 @@ function Login() {
                else
                {
                sessionStorage.setItem('token',res.data.token)
-               sessionStorage.setItem('email',res.data.user.email)
+               setuser(res.data.user)
                history.push('/')
                // settoken(res.data.token)
                }
@@ -40,7 +42,7 @@ function Login() {
     const register = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(process.env.REACT_APP_URL+'signUp',
+            const res = await axios.post(process.env.REACT_APP_URL+'auth/signUp',
             {
                 email,
                 password 
@@ -53,7 +55,7 @@ function Login() {
             else
             {
             sessionStorage.setItem('token',res.data.token)
-            sessionStorage.setItem('email',res.data.user.email)
+            setuser(res.data.user)
             history.push('/')
             // settoken(res.data.token)
             }
