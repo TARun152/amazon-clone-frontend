@@ -19,6 +19,7 @@ export default function Order({order}) {
                 image={item.image}
                 price={item.price}
                 rating={item.rating}
+                quantity={item.quantity}
                 hideButton={true}
               />
             ))
@@ -33,7 +34,7 @@ export default function Order({order}) {
                   value={order.amount}
                   displayType={"text"}
                   thousandSeparator={true}
-                  prefix={"$"}
+                  prefix={"₹"}
                 />
         </div>
   )

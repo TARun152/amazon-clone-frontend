@@ -6,6 +6,7 @@ import CheckoutProduct from './CheckoutProduct';
 export default function Checkout() {
   const {basket,user} = useContext(BasketContext)
     return (
+      <>
         <div className="checkout">
           <div className="checkout__left">
             <img
@@ -15,25 +16,32 @@ export default function Checkout() {
             />
     
             <div>
-              <h3>Hello, {user.email}</h3>
-              <h2 className="checkout__title">Your shopping Basket</h2>
-    
-              {basket.map(item => (
-                <CheckoutProduct
-                  id={item.id}
-                  title={item.title}
-                  image={item.image}
-                  price={item.price}
-                  rating={item.rating}
-                />
-              ))}
-    
-            </div>
+              <h3>Hello, {user?.email}</h3>
+          </div>
           </div>
     
           <div className="checkout__right">
             <Subtotal/>
           </div>
         </div>
+    <div className='checkout__product'>
+    <h2 className="checkout__title">Your shopping Basket</h2>
+        {basket.map(item => (
+          <>
+          <CheckoutProduct
+            id={item.id}
+            title={item.title}
+            description={item.description}
+            image={item.image}
+            images={item.images}
+            price={item.price}
+            rating={item.rating}
+            quantity={item.quantity}
+          />
+          <hr />
+          </>
+        ))}
+        </div>
+        </>
       );
 }

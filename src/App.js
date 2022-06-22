@@ -18,6 +18,7 @@ import {loadStripe} from '@stripe/stripe-js'
 import {Elements} from '@stripe/react-stripe-js'
 import { BasketContext } from './Context/BasketContext';
 import axios from 'axios';
+import SoloProduct from './Components/SoloProduct';
 
 export default function App(){
   const {setuser} = useContext(BasketContext)
@@ -65,6 +66,10 @@ export default function App(){
       <Route exact path='/orders'>
       <Navbar/>
         <Orders/>
+      </Route>
+      <Route exact path='/product'>
+      <Navbar/>
+     <SoloProduct/>
       </Route>
       </Switch>
       </>

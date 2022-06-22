@@ -44,3 +44,12 @@
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
 }
+@media only screen and (max-width: 800px) {
+    .payment__section{
+     display: block;
+     margin: 0 0;
+    }
+    .payment__details{
+        margin-top: 20px;
+    }
+  }

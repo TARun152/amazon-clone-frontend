@@ -12,6 +12,19 @@
   
   .checkout__title {
     margin-right: 10px;
-    padding: 10px;
+    padding-bottom: 10px;
     border-bottom: 1px solid lightgray;
+  }
+  .checkout__product{
+    background-color: white;
+    padding: 20px;
+  }
+  @media only screen and (max-width: 600px) {
+    .checkout{
+     display: block;
+    }
+    .checkout__right{
+      display: flex;
+      justify-content: center;
+    }
   }

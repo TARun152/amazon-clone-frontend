@@ -9,7 +9,7 @@ import axios from "axios";
 
 export default function Payment() {
     const history=useHistory()
-  const { basket,setbasket,user } = useContext(BasketContext);
+  const { basket,setbasket,user,cartLength } = useContext(BasketContext);
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -64,7 +64,7 @@ export default function Payment() {
   const getBasketTotal=()=>{
     let sum=0
     basket.forEach(element => {
-      sum+=element.price
+      sum+=element.totalamount
     });
     return sum
   }
@@ -72,7 +72,7 @@ export default function Payment() {
     <div className="payment">
       <div className="payment__container">
         <h1>
-          Checkout (<Link to="/checkout">{basket?.length} items</Link>)
+          Checkout (<Link to="/checkout">{cartLength} items</Link>)
         </h1>
         <div className="payment__section">
           <div className="payment__title">
@@ -87,14 +87,23 @@ export default function Payment() {
             <h3>Review items and delivery</h3>
           </div>
           <div className="payment__items">
-            {basket.map((item) => (
+            {basket.map((item,index) => (
+              <>
               <CheckoutProduct
-                id={item.id}
-                title={item.title}
-                image={item.image}
-                price={item.price}
-                rating={item.rating}
+              id={item.id}
+              title={item.title}
+              description={item.description}
+              image={item.image}
+              images={item.images}
+              price={item.price}
+              rating={item.rating}
+              quantity={item.quantity}
               />
+              {
+                index===basket.length-1?null:
+              <hr />
+}
+              </>
             ))}
           </div>
         </div>
@@ -116,7 +125,7 @@ export default function Payment() {
                   value={getBasketTotal(basket)}
                   displayType={"text"}
                   thousandSeparator={true}
-                  prefix={"$"}
+                  prefix={"₹"}
                 />
                 <button disabled={processing||disabled||succeeded}>
                     <span>{processing?<p>Processing</p>:"Buy Now"}</span>

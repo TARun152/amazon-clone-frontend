@@ -45,8 +45,10 @@ flex-direction:column;
 margin-left:10px;
 margin-right:10px;
 color:white;
+justify-content: center;
 }
 .nav_basketOption{
+    margin-top: 4px;
     display:flex;
 align-items:center;
 color:white;
@@ -54,4 +56,18 @@ color:white;
 .nav_numberCount{
     margin:0 5px
 }
+@media only screen and (max-width: 600px) {
+    .nav_logo {
+      width: 50px;
+    }
+    .profileOptions_firstLine{
+        font-size: 5px;
+    }
+    .profileOptions_secondLine{
+        font-size: 7px;
+    }
+    .nav_profileOptions{
+        margin-top: 7px;
+    }
+  }
 

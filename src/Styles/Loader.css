@@ -1,0 +1,19 @@
+.spinner{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spinner> div{
+    height: 8vmax;
+    width: 8vmax;
+    border-bottom: 3px solid rgb(110, 110, 110);
+    border-radius: 50%;
+    animation: rotate 800ms linear infinite;
+}
+@keyframes rotate {
+    to {
+        transform: rotateZ(-360deg);
+    }
+}

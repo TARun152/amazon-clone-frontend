@@ -1,9 +1,9 @@
 import React from 'react'
-import spin from './spin.gif'
+import '../Styles/Loader.css'
 export default function Spinner() {
         return (
-            <div>
-                <img src={spin} alt="" />
+            <div className='spinner'>
+                <div></div>
             </div>
         )
 }
