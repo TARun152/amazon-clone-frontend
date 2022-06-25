@@ -2,12 +2,12 @@ import React,{useContext} from 'react'
 import '../Styles/Product.css'
 import {BasketContext} from '../Context/BasketContext'
 import ReactStars from 'react-rating-stars-component'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 export default function Product({ id, title,description, image, price, rating,images }) {
-   const {basket,setbasket} = useContext(BasketContext)
    const history=useHistory()
   return (
-    <div onClick={()=>history.push({pathname:'product',state:{id,title,description,image,price,rating,images}})} className="col-lg-4 col-md-6 col-sm-12" style={{zIndex:1}}>
+    <div className="col-lg-4 col-md-6 col-sm-12" style={{zIndex:1}}>
+      <Link style={{textDecoration:'none'}} to={`/product/${id}`}>
     <div className="product">
     <div className="product_description">
       <p><b>{title} :</b> {description.length>30?description.substr(0,30)+"...":description}</p>
@@ -29,6 +29,7 @@ export default function Product({ id, title,description, image, price, rating,im
 
     <img src={image} alt="" />
   </div>
+  </Link>
   </div>
   )
 }

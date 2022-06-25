@@ -12,8 +12,8 @@
 }
 .home_image{
     max-width: 100vw;
-    width: "100%";
-    min-height: 250px;
+    width: 100%;
+    min-height: 230px;
     z-index: -1;
     margin-bottom: -150px;
     mask-image:linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0));
@@ -21,5 +21,13 @@
 @media only screen and (max-width: 700px) {
   .home_row{
     margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .home_row{
+    margin-top: 70px;
+  }
+  .home_image{
+    min-height: 180px;
   }
 }

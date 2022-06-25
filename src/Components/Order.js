@@ -6,22 +6,27 @@ import '../Styles/Order.css'
 export default function Order({order}) {
   return (
     <div className='order'>
-        <h2>Order</h2>
-        <p>{moment.unix(order.createdOn).format("MMMM Do YYYY, h:mm a")}</p>
-        <p className="order__id">
+      <div className='order__id'>
+        <h2>Order Id :</h2>
+        <p>
             <small>{order.orderId}</small>
         </p>
+        </div>
+        <p>{moment.unix(order.createdOn).format("MMMM Do YYYY, h:mm a")}</p>
         {
             order.orders.map(item=>(
+              <>
                 <CheckoutProduct
                 id={item.id}
                 title={item.title}
-                image={item.image}
+                image={item.thumbnail}
                 price={item.price}
                 rating={item.rating}
                 quantity={item.quantity}
                 hideButton={true}
               />
+              <hr />
+              </>
             ))
         }
         <CurrencyFormat

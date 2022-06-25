@@ -9,10 +9,11 @@ import { BasketContext } from '../Context/BasketContext';
 
 function Login() {
     const history = useHistory();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
     const {setuser} = useContext(BasketContext)
-
+    const [isDisabled, setisDisabled] = useState(false)
+    const pattern =/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const signIn = async (e) => {
         e.preventDefault();
         const newuser={
@@ -24,17 +25,20 @@ function Login() {
                if(res.data?.msg)
                {
                    toast.error(res.data.msg)
+                   setisDisabled(false)
                    // setisFetching(false)
                }
                else
                {
-               sessionStorage.setItem('token',res.data.token)
+               localStorage.setItem('token',res.data.token)
+               localStorage.setItem('email',res.data.user.email)
                setuser(res.data.user)
-               history.push('/')
+               history.replace('/')
                // settoken(res.data.token)
                }
        } catch (error) {
            toast.error(error)
+           setisDisabled(false)
            // setisFetching(false)
        }
     }
@@ -49,18 +53,21 @@ function Login() {
             })
             if(res.data?.msg)
             {
+                setisDisabled(false)
                 toast.error(res.data.msg)
                 // setisFetching(false)
             }
             else
             {
-            sessionStorage.setItem('token',res.data.token)
+            localStorage.setItem('token',res.data.token)
+            localStorage.setItem('email',res.data.user.email)
             setuser(res.data.user)
-            history.push('/')
+            history.replace('/')
             // settoken(res.data.token)
             }
         } catch (error) {
             toast.error(error)
+            setisDisabled(false)
                 // setisFetching(false)
         }
     }
@@ -84,7 +91,19 @@ function Login() {
                     <h5>Password</h5>
                     <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
 
-                    <button type='submit' onClick={signIn} className='login__signInButton'>Sign In</button>
+                    <button disabled={isDisabled?true:false} type='button' onClick={(e)=>{
+                         if(!email)
+                         toast.error("Email is empty")
+                         else if(!password)
+                         toast.error("Password is empty")
+                         else if(!pattern.test(email))
+                    toast.error("Invalid email")
+                         else
+                         {
+                            setisDisabled(true)
+                        signIn(e)
+                         }
+                        }} className='login__signInButton'>Sign In</button>
                 </form>
 
                 <p>
@@ -92,7 +111,19 @@ function Login() {
                     see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
                 </p>
 
-                <button onClick={register} className='login__registerButton'>Create your Amazon Account</button>
+                <button disabled={isDisabled?true:false} onClick={(e)=>{
+                    if(!email)
+                    toast.error("Email is empty")
+                    else if(!password)
+                    toast.error("Password is empty")
+                    else if(!pattern.test(email))
+                    toast.error("Invalid email")
+                    else
+                    {
+                        setisDisabled(true)
+                    register(e)
+                    }
+                }} className='login__registerButton'>Create your Amazon Account</button>
             </div>
             <ToastContainer />
         </div>

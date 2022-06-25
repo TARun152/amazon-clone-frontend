@@ -43,6 +43,12 @@
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
+    transition: all .5s;
+}
+.payment__details>form>div>button:hover{
+    background-color: #efb31a;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.1);
 }
 @media only screen and (max-width: 800px) {
     .payment__section{

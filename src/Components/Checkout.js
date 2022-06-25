@@ -3,8 +3,9 @@ import '../Styles/Checkout.css'
 import Subtotal from './Subtotal';
 import {BasketContext} from '../Context/BasketContext'
 import CheckoutProduct from './CheckoutProduct';
+import FlipMove from 'react-flip-move';
 export default function Checkout() {
-  const {basket,user} = useContext(BasketContext)
+  const {basket} = useContext(BasketContext)
     return (
       <>
         <div className="checkout">
@@ -16,7 +17,7 @@ export default function Checkout() {
             />
     
             <div>
-              <h3>Hello, {user?.email}</h3>
+              <h3>Hello, {localStorage.getItem('email')}</h3>
           </div>
           </div>
     
@@ -26,21 +27,28 @@ export default function Checkout() {
         </div>
     <div className='checkout__product'>
     <h2 className="checkout__title">Your shopping Basket</h2>
-        {basket.map(item => (
+        {
+          basket.length>0?
+        basket.map((item,index) => (
           <>
           <CheckoutProduct
             id={item.id}
             title={item.title}
-            description={item.description}
-            image={item.image}
-            images={item.images}
+            image={item.thumbnail}
             price={item.price}
             rating={item.rating}
             quantity={item.quantity}
           />
-          <hr />
+          {
+            index<basket.length-1?
+          <hr />:null
+}
           </>
-        ))}
+        )):
+        <div className='checkout__emptycart'>
+          Your Amazon Cart is empty.
+        </div>
+      }
         </div>
         </>
       );

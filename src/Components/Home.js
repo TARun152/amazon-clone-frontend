@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React,{useEffect,useState,useCallback} from 'react'
+import React,{useEffect,useState,useCallback,useContext} from 'react'
 import '../Styles/Home.css'
 import Product from './Product'
 import Spinner from './Spinner'
@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { BasketContext } from '../Context/BasketContext'
 export default function Home() {
   const [allProducts, setallProducts] = useState("")
   const [allcategory, setallcategory] = useState([])
@@ -48,6 +49,7 @@ const handleChange = (event) => {
   useEffect(() => {
       getProducts()
       getAllCategory()
+      window.scrollTo(0, 0)
   }, [])
   if(allProducts.length>0)
   return (

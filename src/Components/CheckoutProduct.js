@@ -4,12 +4,13 @@ import ReactStars from 'react-rating-stars-component'
 import '../Styles/CheckoutProduct.css'
 import { useHistory } from 'react-router-dom';
 
-function CheckoutProduct({ id, image,images, title, price, rating,quantity, hideButton,description}) {
+function CheckoutProduct({ id, image, title, price, rating,quantity, hideButton}) {
     const history=useHistory()
 const {basket,setbasket} = useContext(BasketContext)
     const removeFromBasket = () => {
         // remove the item from the basket
         setbasket(basket.filter(item=>item.id!==id))
+        localStorage.removeItem('basket')
     }
 
     return (
@@ -35,7 +36,7 @@ const {basket,setbasket} = useContext(BasketContext)
     <div><strong>Qty:</strong> {quantity}</div>
                 {!hideButton && (
                     <>
-                    <button onClick={()=>{history.push({pathname:'/product',state:{id,image,title,price,rating,images,description}})}}>Edit order</button>
+                    <button onClick={()=>{history.push({pathname:`/product/${id}`})}}>Edit order</button>
                     <button style={{marginLeft:'10px'}} onClick={removeFromBasket}>Remove from Basket</button>
                     </>
                 )}
