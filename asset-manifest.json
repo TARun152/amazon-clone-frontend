@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/amazon-clone-frontend/static/css/main.35107bf0.chunk.css",
-    "main.js": "/amazon-clone-frontend/static/js/main.23c2c1a0.chunk.js",
-    "main.js.map": "/amazon-clone-frontend/static/js/main.23c2c1a0.chunk.js.map",
+    "main.css": "/amazon-clone-frontend/static/css/main.d610c1cc.chunk.css",
+    "main.js": "/amazon-clone-frontend/static/js/main.a48e868e.chunk.js",
+    "main.js.map": "/amazon-clone-frontend/static/js/main.a48e868e.chunk.js.map",
     "runtime-main.js": "/amazon-clone-frontend/static/js/runtime-main.bb0afdbb.js",
     "runtime-main.js.map": "/amazon-clone-frontend/static/js/runtime-main.bb0afdbb.js.map",
     "static/css/2.b8fe46b5.chunk.css": "/amazon-clone-frontend/static/css/2.b8fe46b5.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.5f535e98.chunk.js.map": "/amazon-clone-frontend/static/js/3.5f535e98.chunk.js.map",
     "index.html": "/amazon-clone-frontend/index.html",
     "static/css/2.b8fe46b5.chunk.css.map": "/amazon-clone-frontend/static/css/2.b8fe46b5.chunk.css.map",
-    "static/css/main.35107bf0.chunk.css.map": "/amazon-clone-frontend/static/css/main.35107bf0.chunk.css.map",
+    "static/css/main.d610c1cc.chunk.css.map": "/amazon-clone-frontend/static/css/main.d610c1cc.chunk.css.map",
     "static/js/2.43040100.chunk.js.LICENSE.txt": "/amazon-clone-frontend/static/js/2.43040100.chunk.js.LICENSE.txt",
     "static/media/appstore.d0c58399.png": "/amazon-clone-frontend/static/media/appstore.d0c58399.png",
     "static/media/playstore.82b48319.png": "/amazon-clone-frontend/static/media/playstore.82b48319.png"
@@ -21,7 +21,7 @@
     "static/js/runtime-main.bb0afdbb.js",
     "static/css/2.b8fe46b5.chunk.css",
     "static/js/2.43040100.chunk.js",
-    "static/css/main.35107bf0.chunk.css",
-    "static/js/main.23c2c1a0.chunk.js"
+    "static/css/main.d610c1cc.chunk.css",
+    "static/js/main.a48e868e.chunk.js"
   ]
 }
