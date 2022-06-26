@@ -52,6 +52,7 @@ justify-content: center;
     display:flex;
 align-items:center;
 color:white;
+margin-right: 4px;
 }
 .nav_numberCount{
     margin:0 5px

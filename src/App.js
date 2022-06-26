@@ -51,7 +51,7 @@ export default function App(){
   }, [user])
   
     return (
-      <Router>
+      <Router basename='/amazon-clone-frontend'>
       <>
       <Switch>
         <Route exact path='/'>

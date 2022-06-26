@@ -63,8 +63,12 @@
 @media only screen and (max-width: 700px) {
     .solo{
      display: block;
+     height: 100%;
     }
     .solo_image{
         margin-top: 40px;
+    }
+    .solo_basketButton{
+        margin-bottom: 10px;
     }
   }
