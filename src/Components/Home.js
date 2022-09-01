@@ -15,7 +15,9 @@ export default function Home() {
   const getProducts=useCallback(
     () =>{
       axios.get('https://dummyjson.com/products?limit=100')
-  .then((res)=>{setallProducts(res.data.products); console.log(res.data.products); })
+  .then((res)=>{setallProducts(res.data.products); console.log(res.data.products); 
+    
+  })
   .catch(err=>console.log(err))
     
     },
@@ -47,6 +49,8 @@ const handleChange = (event) => {
   getCategoryProduct(event.target.value)
 };
   useEffect(() => {
+    if(window.innerWidth<768)
+    window.scrollTo(0, 0)
       getProducts()
       getAllCategory()
   }, [])

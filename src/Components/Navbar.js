@@ -44,7 +44,7 @@ export default function Navbar(){
                        <span className='profileOptions_secondLine'>{token?"Sign Out":"Sign In"}</span> 
                     </div>
                     </Link>
-                    <Link style={{textDecoration: 'none'}} to='/orders'>
+                    <Link style={{textDecoration: 'none'}} to={token?'/orders':'/login'}>
                     <div className="nav_profileOptions">
                     <span className='profileOptions_firstLine'>Returns</span>
                        <span className='profileOptions_secondLine'>& Orders</span> 
